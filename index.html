@@ -1,0 +1,374 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/custom.css">
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+		<script>
+			const link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+        <title>CPR - D. Dubois</title>
+        <style>
+            .spaced {
+                margin-top: 30px;
+            }
+            .semispaced{
+                margin-top: 15px;;
+            }
+            .reveal section {
+                text-align: left;
+            }
+            .reveal li {
+                margin-top: 15px;
+            }
+        </style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+                <section id="title_page">
+                    <section style="text-align: center">
+                        <h2>Time, Optimal Play, and Nudges: A Study of Dynamic CPR Games</h2>
+                        <h3>Dimitri Dubois</h3>
+						<h4>Center for Environmental Economics - Montpellier</h4>
+                        <figure>
+                            <img class="plain" src="img/cee-m.png" alt="CEE-M" height="120">
+							<img class="plain" src="img/umontpellier.png" alt="UM" height="120px">
+                            <img class="plain" src="img/cnrs.png" alt="CNRS" height="120px">
+                            <img class="plain" src="img/inrae.png" alt="INRAE" height="120px">
+                        </figure>
+                    </section>
+                    <section>
+                        <h4>Outline</h4>
+                        <ul>
+                            <li><a href="#introduction">Introduction</a></li>
+                            <li><a href="#model_design">Theoretical Model and Experimental Design</a></li>
+                            <li><a href="#discrete_continuous">Comparison of Discrete and Continuous Time</a></li>
+                            <li><a href="#continuous_classification">Classification of Players in a Continuous Time Experiment</a></li>
+                            <li><a href="#nudges">Using Nudges to Encourage Optimal Play</a></li>
+                            <li><a href="#conclusion">Conclusion</a></li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section id="intoduction">
+                    <section>
+                        <h3>Introduction</h3>
+                    </section>
+                    <section style="font-size: 0.9em">
+                        <ul>
+                            <li>Common Pool Resources (CPRs) are resources that are non-excludable but rivalrous, like fisheries, groundwater basins, forest etc.</li>
+                            <li>CPRs are subject to the <i>Tragedy of the Commons</i> (Hardin 1968), that leads to over-extraction and depletion of the resource.</li>
+                            <li>This tragedy is not inevitable, as shown by Ostrom's work on economic governance of the commons.</li>
+                            <li>Behavioral and experimental economists have also made contributions and found mechanisms that can help to mitigate the tragedy and reduce the over-exploitation, like :
+                                <ul style="font-size: 0.75em">
+                                    <li><strong>Communication</strong>: Allowing users to communicate can lead to more cooperative outcomes.</li>
+                                    <li style="margin-top: 5px"><strong>Sanctions</strong>: Implementing penalties for overuse can deter individuals from over-exploiting the resource.</li>
+                                    <li style="margin-top: 5px"><strong>Property Rights</strong>: Assigning property rights to the resource can give individuals or groups an incentive to manage it sustainably.</li>
+                                    <li style="margin-top: 5px"><strong>Regulation</strong>: Government regulations or quotas can limit the use of the resource and prevent over-exploitation.</li>
+                                    <li style="margin-top: 5px"><strong>Nudges</strong>: Behavioral interventions, or "nudges", can influence individuals' decisions and promote more sustainable use of the resource.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+                    <section>
+                        <ul>
+                            <li>CPRs have mainly been studied in a static framework (one-shot or repeated game), i.e. the resource is assumed to be fixed and unchanging over the course of the game. Players make decisions about how much to extract from the resource but theses decisions do not affect the future availability of the resource.</li>
+                            <li>However in reality many CPRs are dynamic : they regenerate over an infinite horizon of time and the extraction decisions made by players can affect the future availability of the resource.</li>
+                        </ul>
+                    </section>
+					<section>
+						<h4>Dynamic framework</h4>
+						<ul>
+							<li>The resource evolves over time :
+                                <ul>
+                                    <li>$H_{t+1}$ depends on $H_t$ and $E_t$, where $H$ is the resource level and $E$ the extraction.</li>
+                                    <li>The resource regenerates
+                                        <ul>
+                                            <li>Additive regeneration : constant rate of natural growth (rain for example), fixed amount of the resource is added each instant.</li>
+                                            <li>Multiplicative regeneration : the amount added to the resource depends on the current level of the resource.</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>The time horizon is infinite, which allows to study the long-term effects of extraction decisions on the resource and the sustainability of different strategies.</li>
+						</ul>
+					</section>
+                    <section>
+                        <h4>Research questions in this dynamic context</h4>
+                        <ol>
+                            <li>Is there an equivalence between playing the game experimentally in discrete or continuous time?</li>
+                            <li>Are subjects capable of following the socially optimal path?</li>
+                            <li>Can we assist them with nudges?</li>
+                        </ol>
+                    </section>
+                </section>
+
+                <section id="model_design">
+                    <section>
+                        <h3>Theoretical Model and Experimental Design</h3>
+                    </section>
+                    <section>
+                        <h4>Model</h4>
+                        <ul>
+                            <li>simple linear quadratic model in which two agents \(i\) and \(j\) exploit a renewable resource \((H)\)</li>
+                            <li>extraction from the resource generates a revenue \(B(w) = aw -\frac{b}{2}w^2\)</li>
+                            <li>and a cost \(C(H, w) = max(0, c_0-c_1H)w\)
+                            <ul>
+                                <li>the cost depends negatively on the level of resource (H)</li>
+                                <li>the cost is positive when the resource level is lower than \(\frac{c_0}{c_1}\) and null if equal or higher<br>
+                                <span style="font-size:0.75em;">piecewise function to avoid subsidy in case of a high level of resource</span></li>
+                            </ul></li>
+                            <li>players' instantaneous payoff is given by the difference between revenue and cost</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <p>Total discounted payoff, with \(r\) the discount rate, is given by</p>
+                        <p style="margin-top: 30px">
+                        \(\int_{0}^{\infty}e^{-rt} \left[ aw_i(t)-\frac{b}{2}w_i(t)^{2}-\max (0,\; c_{0}-c_{1}H(t))w_i(t) \right]dt\) <br><br>
+                        with<br><br>
+                        \(\dot H(t)=R-\alpha(w_i(t)+w_j(t))\)
+                    </p>
+                    <p style="margin-top: 30px">\(R\) is the natural recharge and \(\alpha\) is the return flow coefficient
+                    </section>
+                    <section>
+                        <p>we distinguish 3 benchmarks</p>
+                        <ul>
+                            <li><strong>social optimum</strong>: both players in the pair maximize the joint discounted net payoffs and maintain the resource at an efficient level (cooperative solution)</li>
+                            <li><strong>feedback</strong>: players maximize their own discounted net payoffs, they adopt a non-cooperative strategy</li>
+                            <li><strong>myopic</strong>: at each instant players maximize their current payoff regardless of the evolution of the resource</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <p>Choice of parameters such that theoretical paths are disctincts</p>
+                        <figure>
+                            <img class="plain" src="img/theoretical_paths.png" alt="Theoretical paths">
+                            <figcaption style="font-size:0.75em;">\(H_0=15, R=0.56, a=2.5, b=1.8, c_0=2, c_1=0.1, r=0.005, \alpha=1\)</figcaption>
+                        </figure>
+                    </section>
+                    <section>
+                        <h4>Experimental design</h4>
+                        <h5>Characteristics of continuous time</h5>
+                        <ul>
+                            <li>players can change their extraction rate whenever they want</li>
+                            <li>extraction rate and resource evolve continuously</li>
+                        </ul>
+                        <h5 style="margin-top: 30px">Implementation of continuous time in the lab</h5>
+                        <ul>
+                            <li>time in the experiment is synchronized with real time</li>
+                            <li>extraction rate transmitted by the player's computer to the server every second</li>
+                            <li>calculations made every seconds and information updated every seconds on the players' screens</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h5>Infinite horizon</h5>
+                        <ul>
+                            <li>through the player's payoff</li>
+                            <li>each instant \(p\) we add to the discounted cumulative payoff (from \(t=0\) to \(t=p\)) the discounted payoff from the current instant to infinity (from \(t=p\) to \(t=\infty\)) assuming that the extraction rate remains unchanged</li>
+                            <li>the subject can observe the consequences of this extraction rate over the very long run</li>
+                            <li>subjects play the same amount of time</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <figure style="text-align: center">
+                            <img class="plain" src="img/screenshot.png" alt="Screenshot" width="60%"/>
+                        </figure>
+                    </section>
+                    <section>
+                        <ul>
+                            <li>subjects play alone first (optimal control problem) <br>
+                                <i>two 5 minutes trials followed by a 5 minutes play for real</i></li>
+                            <li>same subjects (within subject design) then play by groups of 2 (differential game)<br>
+                                <i>two 5 minutes trials followed by a 5 minutes play for real<br>
+                                random rematching after each round</i></li>
+                        </ul>
+                        <ul style="margin-top: 50px">
+                            <li>70 participants, students from the University of Montpellier</li>
+                            <li>70 observations for the optimal control, and 35 for the two-players game</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section id="discrete_continuous">
+                    <section>
+                        <h3>Continuous vs. discrete time in dynamic common pool resource game experiments</h3>
+                        <p>
+                            Djiguemde, M., Dubois, D., Sauquet, A. & Tidball, M. (2022)
+                        </p>
+                        <figure>
+                            <img src="img/environmental_economics.jpg" alt="Environmental and Resource Economics" style="height: 200px" class="plain">
+                            <figcaption><i>Environmental and Resource Economics</i> 82, pp. 985-1014.</figcaption>
+                        </figure>
+                    </section>
+                </section>
+
+                <section id="continuous_classification">
+                    <section>
+                        <h3>Individual and strategic behaviors in a dynamic extraction problem: results from a within-subject experiment in continuous time</h3>
+                        <p>
+                            Djiguemde, M. Dubois, D. Sauquet, A. & Tidball, M. (2022)
+                        </p>
+                        <figure>
+                            <img src="img/applied_economics.webp" alt="Applied Economics" style="height: 200px" class="plain">
+                            <figcaption><i>Applied Economics</i>, pp. 1-24.</figcaption>
+                        </figure>
+                    </section>
+                    <section>
+                        <ul>
+                            <li>dynamic framework can be either in discrete-time or in continuous-time</li>
+                            <li>vast majority of the CPR literature that combines theory and experimentation in the lab is in discrete time (e.g. Herr et al. 1997, Gardner et al. 1997, Hey et al. 2009, Suter et al. 2012)</li>
+                            <li style="margin-top: 50px">dynamic models in continuous-time over an infinite horizon are widely used to model economic problems (Dockner et al. 2000)</li>
+                            <li>very few of these models are tested in the laboratory, except Tasneem et al. (2017, 2019)</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <p>
+                            We consider a simple linear quadratic model in which agents exploit a
+                            renewable resource over an infinite horizon (Rubio & Casino 2003)
+                        </p>
+                        <h6>Research questions</h6>
+                        <ul>
+                            <li>Do the experimental subjects behave as predicted by the model ?</li>
+                            <li>What is the impact of the introduction of interactions in this dynamic context?</li>
+                        </ul>
+                        <h6 style="margin-top: 40px">What we do</h6>
+                        <ul>
+                            <li>we define theoretical benchmarks</li>
+                            <li>we define an experimental protocol to test the model in the lab</li>
+                            <li>we compare the observations to the theoretical behaviors, in a single agent situation (optimal control problem) and in a two-players game (differential game)</li>
+                    </section>
+                    <section>
+                        <h3>Results</h3>
+                    </section>
+                    <section>
+                        <figure style="text-align: center">
+                            <figcaption>Evolution of the resource level</figcaption>
+                            <img class="plain" src="img/resource_both_treatment.png" alt="Av. resource in both treatments">
+                        </figure>
+                        <ul>
+                            <li>over-exploitation at the beginning (higher in the game)</li>
+                            <li>more dispersion in the game</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h4>Profiles</h4>
+                        <ul style="font-size: 0.9em">
+                            <li>determine wether individuals and groups exhibited myopic, feeback or optimal behavior</li>
+                            <li>based on the Mean Squared Deviation between the observed path and the theoretical one</li>
+                            <li>if the player/group 's \(MSD_{MY}\) is lower than his \(MSD_{OS}\) (and \(MSD_{FEED}\) in the game) the player/group is classified as Myopic</li>
+                            <li>we considered the conditional MSD (with respect to the \(t - 1\) resource level) and applied regressions to check that the coefficient of the conditional decisions corresponding to the lowest MSD was actually different from zéro</li>
+                            <li>we therefore classified players / groups as "significantly" optimal, myopic, feedback or undetermined (if the coefficient is not significantly different from zero)</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h5>Optimal control problem</h5>
+                        <ul style="font-size: 0.9em">
+                            <li>27.14% <i>optimal</i> and 72.86% <i>undetermined</i></li>
+                            <li>visual inspection of the <i>undetermined</i> and definition of new profiles: <i>convergent</i> (21.43%) and <i>under-exploiter</i> (24.29%)</li>
+                            <li>remains 27.14% without any particular pattern</li>
+                        </ul>
+                        <figure style="text-align: center">
+                            <img class="plain" src="img/control_profiles.png" alt="Control - Profiles" width=700 />
+                        </figure>
+                    </section>
+                    <section>
+                        <h5>Game</h5>
+                        <ul style="font-size: 0.9em">
+                            <li>20% <i>optimal</i> and 80% <i>undetermined</i></li>
+                            <li>visual inspection of the <i>undetermined</i> : 25.71% of <i>convergent</i> and 14.29% of <i>under-exploiter</i></li>
+                            <li>a new profile: <i>over-exploiter</i> (17.14%) - between feedback and myopic</li>
+                            <li>remains 22.86% without any particular pattern</li>
+                        </ul>
+                        <figure style="text-align: center">
+                            <img class="plain" src="img/game_profiles.png" alt="Game - Profiles" width=700 />
+                        </figure>
+                    </section>
+                    <section>
+                        <h4>Conclusion</h4>
+                        <ul>
+                            <li>provide a continuous-time model over an infinite horizon and an experimental protocol to test its predicition in the lab</li>
+                            <li>we use a within-subject design to test the effect of interactions in this setting</li>
+                        </ul>
+                        <ul>
+                            <li>nearly 20-25% of individuals and groups succeed in playing significantly optimal</li>
+                            <li>another 20-25% play optimally but over a finite horizon, the category we called <i>convergent</i></li>
+                            <li>we observe no effect of the nature of time in the control but strong effects in the game</li>
+                            <li>as expected strategic interaction increases the tragedy of the common</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section id="nudges">
+                    <section>
+                        <h3>Nudging Behaviors in a Dynamic Common Pool Renewable Resource Experiment</h3>
+                        <p>
+                            Djiguemde, M., Dubois, D., Sauquet, A. & Tidball, M.
+                        </p>
+                        <figure>
+                            <img src="img/work_in_progress.webp" alt="WIP" style="height: 200px" class="plain">
+                        </figure>
+                    </section>
+                </section>
+
+                <section id="conclusion">
+                    <section>
+                        <h3>Conclusion</h3>
+                    </section>
+                </section>
+
+                <section id="refs">
+                    <section>
+                        <h3>References</h3>
+                    </section>
+                    <section style="font-size:0.75em">
+                        <ul>
+                            <li>Dietz, T., Ostrom, E., & Stern, P. C. (2003). The Struggle to Govern the Commons. Science, 302(5652), 1907-1912.</li>
+                            <li>Djiguemde, M., Dubois, D., Sauquet, A. & Tidball, M., 2022. "Continuous vs. discrete time in dynamic common pool resource game experiments". Environmental and Resource Economics 82, pp. 985-1014.</li>
+                            <li>Djiguemde, M. Dubois, D. Sauquet, A. & Tidball, M., 2022. "Individual and strategic behaviors in a dynamic extraction problem: results from a within-subject experiment in continuous time". Applied Economics, pp. 1-24.</li>
+                            <li>Fehr, E., & Gächter, S. (2000). Cooperation and Punishment in Public Goods Experiments. American Economic Review, 90(4), 980-994.</li>
+                            <li>Ostrom, E., Walker, J., & Gardner, R. (1992). Covenants with and without a Sword: Self-Governance is Possible. American Political Science Review, 86(2), 404-417.</li>
+                            <li>Schlager, E., & Ostrom, E. (1992). Property-Rights Regimes and Natural Resources: A Conceptual Analysis. Land Economics, 68(3), 249-262.</li>
+                            <li>Thaler, R. H., & Sunstein, C. R. (2008). Nudge: Improving Decisions about Health, Wealth, and Happiness. Yale University Press.</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section id="appendix">
+                    <section>
+                        <h3>Appendix</h3>
+                    </section>
+                </section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+		<script>
+			Reveal.initialize({
+                hash: true,
+                history: true,
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/math/math.js', async: true }
+				],
+				math: {
+	                   mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+	                    config: 'TeX-AMS_HTML',
+	                }
+			});
+			Reveal.configure({
+				slideNumber: 'c/t'
+			});
+		</script>
+	</body>
+</html>

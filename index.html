@@ -89,7 +89,7 @@
 						<ul>
 							<li>The resource evolves over time :
                                 <ul>
-                                    <li>$H_{t+1}$ depends on $H_t$ and $E_t$, where $H$ is the resource level and $E$ the extraction.</li>
+                                    <li>$H_{t+1}$ depends on $H_t$, $w_t$ and R where $H$ is the resource level, $w$ the extraction and $R$ the regeneration.</li>
                                     <li>The resource regenerates
                                         <ul>
                                             <li>Additive regeneration : constant rate of natural growth (rain for example), fixed amount of the resource is added each instant.</li>
@@ -113,37 +113,39 @@
 
                 <section id="model_design">
                     <section>
-                        <h3>Theoretical Model and Experimental Design</h3>
+                        <h3>Theoretical model and experimental implementation</h3>
                     </section>
                     <section>
-                        <h4>Model</h4>
+                        <h4>Model (based on Rubio & Casino (2003))</h4>
                         <ul>
-                            <li>simple linear quadratic model in which two agents \(i\) and \(j\) exploit a renewable resource \((H)\)</li>
-                            <li>extraction from the resource generates a revenue \(B(w) = aw -\frac{b}{2}w^2\)</li>
-                            <li>and a cost \(C(H, w) = max(0, c_0-c_1H)w\)
+                            <li>Linear quadratic model in which two agents \(i\) and \(j\) exploit a renewable resource \((H)\) <span style="font-size: 0.8em">the resource can be assimilated to a groundwater</span></li>
+                            <li>Extraction from the resource generates a revenue \(B(w) = aw -\frac{b}{2}w^2\)</li>
+                            <li>Extraction has a cost \(C(H, w) = max(0, c_0-c_1H)w\)
                             <ul>
-                                <li>the cost depends negatively on the level of resource (H)</li>
-                                <li>the cost is positive when the resource level is lower than \(\frac{c_0}{c_1}\) and null if equal or higher<br>
-                                <span style="font-size:0.75em;">piecewise function to avoid subsidy in case of a high level of resource</span></li>
+                                <li>The cost depends negatively on the level of resource (H)</li>
+                                <li>The cost is positive when the resource level is lower than \(\frac{c_0}{c_1}\) and null if equal or higher <pan style="font-size:0.75em;">piecewise function to avoid subsidy in case of a high level of resource</span></li>
                             </ul></li>
-                            <li>players' instantaneous payoff is given by the difference between revenue and cost</li>
+                            <li>Players' instantaneous payoff is given by the difference between revenue and cost</li>
                         </ul>
                     </section>
                     <section>
-                        <p>Total discounted payoff, with \(r\) the discount rate, is given by</p>
+                        <p>In the infinite horizon, the total discounted payoff is given by</p>
                         <p style="margin-top: 30px">
                         \(\int_{0}^{\infty}e^{-rt} \left[ aw_i(t)-\frac{b}{2}w_i(t)^{2}-\max (0,\; c_{0}-c_{1}H(t))w_i(t) \right]dt\) <br><br>
                         with<br><br>
                         \(\dot H(t)=R-\alpha(w_i(t)+w_j(t))\)
                     </p>
-                    <p style="margin-top: 30px">\(R\) is the natural recharge and \(\alpha\) is the return flow coefficient
+                    <p style="margin-top: 30px">Where \(r\) is the discount rate, \(R\) is the natural recharge and \(\alpha\) is the return flow coefficient</p>
+                    <p>
+                        Each player's extraction reduces the resource level, affecting not only their own future payoffs but also the other player's future payoffs. This interdependence of decisions and outcomes, inherent in CPRs, is incorporated into this dynamic equation.
+                    </p>
                     </section>
                     <section>
-                        <p>we distinguish 3 benchmarks</p>
+                        <p>3 benchmarks</p>
                         <ul>
-                            <li><strong>social optimum</strong>: both players in the pair maximize the joint discounted net payoffs and maintain the resource at an efficient level (cooperative solution)</li>
-                            <li><strong>feedback</strong>: players maximize their own discounted net payoffs, they adopt a non-cooperative strategy</li>
-                            <li><strong>myopic</strong>: at each instant players maximize their current payoff regardless of the evolution of the resource</li>
+                            <li><strong>Social optimum</strong>: both players in the pair maximize the joint discounted net payoffs and maintain the resource at an efficient level (cooperative solution)</li>
+                            <li><strong>Feedback</strong>: players maximize their own discounted net payoffs, they adopt a non-cooperative strategy</li>
+                            <li><strong>Myopic</strong>: at each instant players maximize their current payoff regardless of the evolution of the resource</li>
                         </ul>
                     </section>
                     <section>
@@ -154,13 +156,13 @@
                         </figure>
                     </section>
                     <section>
-                        <h4>Experimental design</h4>
-                        <h5>Characteristics of continuous time</h5>
+                        <h4>Experimental implementation</h4>
+                        <p><strong>Characteristics of continuous time</strong></p>
                         <ul>
                             <li>players can change their extraction rate whenever they want</li>
                             <li>extraction rate and resource evolve continuously</li>
                         </ul>
-                        <h5 style="margin-top: 30px">Implementation of continuous time in the lab</h5>
+                        <p style="margin-top: 50px"><strong>Implementation of continuous time in the lab</strong></p>
                         <ul>
                             <li>time in the experiment is synchronized with real time</li>
                             <li>extraction rate transmitted by the player's computer to the server every second</li>
@@ -168,31 +170,18 @@
                         </ul>
                     </section>
                     <section>
-                        <h5>Infinite horizon</h5>
+                        <p><strong>Infinite horizon</strong></p>
                         <ul>
-                            <li>through the player's payoff</li>
-                            <li>each instant \(p\) we add to the discounted cumulative payoff (from \(t=0\) to \(t=p\)) the discounted payoff from the current instant to infinity (from \(t=p\) to \(t=\infty\)) assuming that the extraction rate remains unchanged</li>
-                            <li>the subject can observe the consequences of this extraction rate over the very long run</li>
-                            <li>subjects play the same amount of time</li>
+                            <li>Incorporated into the player's payoff calculation.</li>
+                            <li>At each instant \(p\), the player's discounted cumulative payoff (from \(t=0\) to \(t=p\)) is updated. This update includes the discounted payoff from the current instant to infinity (from \(t=p\) to \(t=\infty\)), assuming that the extraction rate remains constant.</li>
+                            <li>Allows players to observe the long-term consequences of their extraction rate.</li>
                         </ul>
                     </section>
                     <section>
-                        <figure style="text-align: center">
-                            <img class="plain" src="img/screenshot.png" alt="Screenshot" width="60%"/>
+                        <figure>
+                            <figcaption>The screen players faced in the experiment</figcaption>
+                            <img class="plain img-fluid" src="img/screenshot.png" alt="Screenshot" style="width: 50%"/>
                         </figure>
-                    </section>
-                    <section>
-                        <ul>
-                            <li>subjects play alone first (optimal control problem) <br>
-                                <i>two 5 minutes trials followed by a 5 minutes play for real</i></li>
-                            <li>same subjects (within subject design) then play by groups of 2 (differential game)<br>
-                                <i>two 5 minutes trials followed by a 5 minutes play for real<br>
-                                random rematching after each round</i></li>
-                        </ul>
-                        <ul style="margin-top: 50px">
-                            <li>70 participants, students from the University of Montpellier</li>
-                            <li>70 observations for the optimal control, and 35 for the two-players game</li>
-                        </ul>
                     </section>
                 </section>
 
@@ -207,6 +196,28 @@
                             <figcaption><i>Environmental and Resource Economics</i> 82, pp. 985-1014.</figcaption>
                         </figure>
                     </section>
+                    <section>
+                        <p><strong>How the nature of time (continuous versus discrete) affects strategic interactions between players in a dynamic CPR ?</strong></p>
+                        <ul>
+                            <li>In continuous time, decisions are made at each instant of the real time and the resource evolves continuously, while in discrete time, decisions are made at each period $n$ and the resource evolves from one period to the other.</li>
+                            <li>We applied a discretization rate to the continuous-time model to create a discrete-time model that approximates the continuous one. This allows to compare the behaviors and outcomes in both continuous and discrete time settings.</li>
+                            <li>While the theoretical models for continuous and discrete time may be similar, the actual behavior of individuals in these different settings could vary.</li>
+                            <li>The purpose of the paper is to explore these potential behavioral differences.</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <ul>
+                            <li>In a laboratory setting, it's necessary to discretize the model to facilitate the experimental process. This is because the continuous-time model would require instantaneous decision-making and feedback, which is not feasible in a real-world setting.</li>
+                            <li>We chose two different discretization rates, in order to create two distinct experimental conditions that approximate the continuous-time ($\tau=0.1$) and discrete-time ($\tau=1$) models respectively.</li>
+                            <li>Both treatments had a total play time of 10 minutes:
+                                <ul>
+                                    <li>In the continuous-time treatment, this translated to 600 seconds of play, where 1 second = 0.1 instant in the model.</li>
+                                    <li>In the discrete-time treatment, this translated to 60 periods, with 10 seconds to make a decision in each period. Here, 1 period = 1 instant in the model.</li>
+                                    <li>In both treatments, players played 60 instants of the model.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
                 </section>
 
                 <section id="continuous_classification">
@@ -219,6 +230,16 @@
                             <img src="img/applied_economics.webp" alt="Applied Economics" style="height: 200px" class="plain">
                             <figcaption><i>Applied Economics</i>, pp. 1-24.</figcaption>
                         </figure>
+                    </section>
+                    <section>
+                        <ul>
+                            <li>subjects play alone first (optimal control problem)</li>
+                            <li>same subjects (within subject design) then play by groups of 2 (differential game)</li>
+                        </ul>
+                        <ul style="margin-top: 50px">
+                            <li>70 participants, students from the University of Montpellier</li>
+                            <li>70 observations for the optimal control, and 35 for the two-players game</li>
+                        </ul>
                     </section>
                     <section>
                         <ul>
@@ -320,6 +341,10 @@
                 <section id="conclusion">
                     <section>
                         <h3>Conclusion</h3>
+                        <ul>
+                            <li>Dynamic CPR with chocks on the resource (known/unknown, thresholds)</li>
+                            <li>Dynamic CPR with resource mobility</li>
+                        </ul>
                     </section>
                 </section>
 
@@ -343,6 +368,33 @@
                 <section id="appendix">
                     <section>
                         <h3>Appendix</h3>
+                    </section>
+                    <section>
+                        <figure>
+                            <figcaption>Benefit function: $B(w) = aw -\frac{b}{2}w^2$ <br>
+                                with $a=2.5$ and $b=1.8$
+                            </figcaption>
+                            <img src="img/benefit.png" alt="Benefit function" class="plain">
+                        </figure>
+                    </section>
+                    <section>
+                        <figure>
+                            <figcaption>Cost function: \(C(H, w) = max(0, c_0-c_1H)w\) <br>
+                            with $c_0=2$ and $c_1=0.1s$</figcaption>
+                            <img src="img/cost.png" alt="Cost function" class="plain">
+                        </figure>
+                    </section>
+                    <section>
+                        <h4>Discretization</h4>
+                        <p>
+                        For the discretization of the continuous-time model, we consider $\tau$ as the discretization step and $n$ as a period. Time is discretized into intervals of length $\tau$, such that the differential equation and the payoff are approximated in each interval $n\tau , (n + 1)\tau$.
+                        </p>
+                    </section>
+                    <section
+                        <figure>
+                            <figcaption>Screen players faced in the discrete-time treatment</figcaption>
+                            <img src="img/screenshot_discret.png" alt="Discrete" style="width: 60%" class="plain">
+                        </figure>
                     </section>
                 </section>
 			</div>

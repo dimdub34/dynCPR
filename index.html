@@ -84,11 +84,12 @@
                     </section>
                     <section>
                         <ul>
-                            <li>CPRs have mainly been studied in a static framework (one-shot or repeated game), i.e. the resource is assumed to be fixed and unchanging over the course of the game. Players make decisions about how much to extract from the resource but theses decisions do not affect the future availability of the resource.</li>
-                            <li>However in reality many CPRs are dynamic : they regenerate over an infinite horizon of time and the extraction decisions made by players can affect the future availability of the resource.</li>
+                            <li>CPRs have mainly been studied in a static framework: the resource is assumed to be fixed and unchanging over the course of the game. Players make decisions about how much to extract from the resource but theses decisions do not affect the future availability of the resource.</li>
+                            <li style="margin-top: 30px">However in reality many CPRs are dynamic : they regenerate over an infinite horizon of time and the extraction decisions made by players can affect the future availability of the resource.</li>
                         </ul>
+                        <p>Our research dives into this dynamic framework, providing a fresh perspective on how CPRs are managed over time.</p>
                     </section>
-					<section>
+					<!-- <section>
 						<h4>Dynamic framework</h4>
 						<ul>
 							<li>The resource evolves over time :
@@ -104,11 +105,11 @@
                             </li>
                             <li>The time horizon is infinite, which allows to study the long-term effects of extraction decisions on the resource and the sustainability of different strategies.</li>
 						</ul>
-					</section>
+					</section> -->
                     <section>
-                        <h4>Research questions in this dynamic context</h4>
+                        <h4>Research questions</h4>
                         <ol>
-                            <li>Is there an equivalence between playing the game experimentally in discrete or continuous time?</li>
+                            <li>How to implement continuous time in the lab? Is there an equivalence between playing the game experimentally in discrete or continuous time?</li>
                             <li>Are subjects capable of following the socially optimal path?</li>
                             <li>Can we assist them with nudges?</li>
                         </ol>
@@ -129,7 +130,6 @@
                                 <li>The cost depends negatively on the level of resource (H)</li>
                                 <li>The cost is positive when the resource level is lower than \(\frac{c_0}{c_1}\) and null if equal or higher <pan style="font-size:0.75em;">piecewise function to avoid subsidy in case of a high level of resource</span></li>
                             </ul></li>
-                            <li>Players' instantaneous payoff is given by the difference between revenue and cost</li>
                         </ul>
                     </section>
                     <section>
@@ -200,17 +200,33 @@
                             <figcaption><i>Environmental and Resource Economics</i> 82, pp. 985-1014.</figcaption>
                         </figure>
                     </section>
-                    <section style="font-size: 0.9em">
-                        <p><strong>How the nature of time (continuous versus discrete) affects strategic interactions between players in a dynamic CPR ?</strong></p>
+                    <section>
+                        <p><strong>Continous-time in the lab</strong></p>
                         <ul>
-                            <li>In continuous time, decisions are made at each instant $t$ of the real time and the resource evolves continuously, while in discrete time, decisions are made at each period $n$ and the resource evolves from one period to the other.</li>
+                            <li>In continuous time, extractions can be made at any instant and the resource evolves continuously.</li>
                             <li>In a laboratory setting, it's necessary to discretize the model to facilitate the experimental process. This is because the continuous-time model would require instantaneous decision-making and feedback, which is not feasible in a real-world setting (exchange of information between the computer and the server).</li>
-                            <li>We chose two different discretization rates, in order to create two distinct experimental conditions that approximate the continuous-time ($\tau=0.1$) and discrete-time ($\tau=1$) models respectively.</li>
-                            <li>While the theoretical models for continuous and discrete time may be similar, the actual behavior of individuals in these different settings could vary.</li>
-                            <li>This paper explores potential behavioral differences between continuous and discrete time settings.</li>
+                        </ul>
+                        <p><strong>Discrete-time in the lab</strong></p>
+                        <ul>
+                            <li>In discrete time, extractions are made at specific intervals and the resource evolves from one interval to the next.</li>
                         </ul>
                     </section>
                     <section>
+                        <h4>Impact of Time Nature on CPR Management</h4>
+                        <ul>
+                            <li>We designed two conditions to approximate continuous-time (discretization rate $\tau=0.1$) and discrete-time (discretization rate $\tau=1$) models.</li>
+                            <li>Both models are theoretically similar given these discretization rates.</li>
+                            <li>Each condition had a total play time of 10 minutes:
+                                <ul>
+                                    <li>Continuous-Time (CT) treatment: 600 seconds of play, where 1 second = 0.1 instant in the model.</li>
+                                    <li>Discrete-Time (DT) treatment: 60 periods, with 10 seconds per period. Here, 1 period = 1 instant in the model.</li>
+                                </ul>
+                            </li>
+                            <li>Both treatments involved 60 model instants of play.</li>
+                        </ul>
+                        <p>The study investigates behavioral differences in continuous vs. discrete time settings.</p>
+                    </section>
+                    <!-- <section>
                         <p><strong>Implementation of continous-time and discrete-time in the lab</strong></p>
                         <ul>
                             <li>Both treatments had a total play time of 10 minutes:
@@ -222,7 +238,7 @@
                             </li>
                             <li>This allows to compare the behaviors and outcomes in both continuous and discrete time settings.</li>
                         </ul>
-                    </section>
+                    </section> -->
                     <section>
                         <p><strong>Infinite horizon</strong></p>
                         <ul>
@@ -246,10 +262,11 @@
                         </div>
                     </section>
                     <section>
-                        <p>We used a between-subjects design:</p>
+                        <h4>Experimental Design</h4>
                         <ul>
-                            <li>202 participants in the optimal control: 104 in CT and 98 in DT</li>
-                            <li>190 participants in the game: 49 in CT and 46 in DT</li>
+                            <li>We conducted a dynamic game experiment with a total of 392 participants.</li>
+                            <li>In the optimal control scenario (single player extracting from the resource), we had 202 participants: 104 in the Continuous-Time (CT) treatment and 98 in the Discrete-Time (DT) treatment.</li>
+                            <li>In the game scenario (two players extracting from the same resource), we had 190 participants: 49 pairs in the CT treatment and 46 pairs in the DT treatment.</li>
                         </ul>
                     </section>
                     <section>
